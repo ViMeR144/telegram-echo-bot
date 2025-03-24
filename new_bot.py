@@ -41,8 +41,14 @@ def main():
     flask_thread.start()
     print("Веб-сервер запущен")
     
+    # Получаем токен из переменной окружения
+    token = os.environ.get('TELEGRAM_TOKEN')
+    if not token:
+        print("Ошибка: не установлена переменная TELEGRAM_TOKEN")
+        return
+    
     # Создаем приложение
-    app = ApplicationBuilder().token("8158315214:AAHLZ7IhGuVElIc6sniagrZSRJ-XGv4tmKs").build()
+    app = ApplicationBuilder().token(token).build()
     
     print("Настройка обработчиков...")
     
